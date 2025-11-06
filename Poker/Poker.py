@@ -21,6 +21,17 @@ class Number(Enum):
     KING = 13
     ACE = 14
 
+class Combinations(Enum):
+    HIGHCARD = 1
+    PAIR = 2
+    TWOPAIR = 3
+    THREEOFAKIND = 4
+    STRAIGHT = 5
+    FLUSH = 6
+    FULLHOUSE = 7
+    FOUROFAKIND = 9
+    STRAIGHTFLUSH = 10
+
 class Card():
     def __init__(self, color: Color, number: Number):
         self.color = color
