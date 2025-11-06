@@ -39,15 +39,16 @@ class Card():
 
     def __str__(self):
         # show enum name and value for Number, and the symbol/text for Color
-        return f"{self.number.name}({self.number.value}) {self.color.value}"
+        return str(self.number.value)+" "+str(self.color.value)
 
 def main ():
-    cards = set()
+    cards = []
     for color in Color:
         for number in Number:
-            cards.add(Card(color, number))
+            cards.append(Card(color, number))
     
-    print (cards)
+    for card in cards:
+        print(card)
 
 
 if __name__ == "__main__":
