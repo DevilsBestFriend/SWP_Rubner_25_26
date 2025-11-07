@@ -111,14 +111,6 @@ def main ():
   ]
   for nr in name_relative:
     print(f"{nr[0]}|\tAbsolute amount:\t{results[nr[2].value]}\tRelative amount: {results[nr[2].value]/tests*100:.6f}%\tTrue relative amount:\t{nr[1]}")
-  
-  
-        
-          
-            
-            
-
-
 
 if __name__ == "__main__":
   main()
