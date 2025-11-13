@@ -51,7 +51,7 @@ def test_probability (cards, tests = 10000):
   results = [0,0,0,0,0,0,0,0,0]
   for _ in range(tests):
     hand = dealhand(cards)
-    is_consecutive = all(hand[i+1].number.value == hand[i].number.value + 1 for i in range(4))
+    is_consecutive = all(hand[i+1].number.value == hand[i].number.value + 1 for i in range(4)) or hand[4].number == Number.ACE and hand[0].number == Number.TWO and all(hand[i+1].number.value == hand[i].number.value + 1 for i in range(3))
     is_same_suit = all(card.color == hand[0].color for card in hand)
     if is_consecutive and is_same_suit:
         results[Combinations.STRAIGHTFLUSH.value] += 1
