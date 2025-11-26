@@ -35,11 +35,11 @@ class Combinations(Enum):
 
 class Card():
   def __init__(self, color: Color, number: Number):
-      self.color = color
-      self.number = number
+    self.color = color
+    self.number = number
 
   def __str__(self):
-      return str(self.number.value)+" "+str(self.color.value)
+    return str(self.number.value)+" "+str(self.color.value)
     
 def dealhand(cards):
   hand = [random.sample(cards,5)]
@@ -87,12 +87,9 @@ def main ():
   cards = generate_cards()
 
   tests = input("How many tests to run? [Default: 10000]")
-  if len(tests) == 0:
-    tests = 10000
-  else:
-    try:
-      tests = int(tests)
-    except ValueError:
+  try:
+    tests = 10000 if len(tests) == 0 else int(tests) # ternary operator
+  except ValueError:
       print("Invalid input, using default value of 10000")
       tests = 10000
   results = [0, 0, 0, 0, 0, 0, 0, 0, 0]
