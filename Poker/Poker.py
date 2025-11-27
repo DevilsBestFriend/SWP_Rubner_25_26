@@ -54,8 +54,8 @@ def dealhand(cards):
 def classify_hand(hand):
   hand = sorted(hand[0], key=lambda x: x.number.value)
   is_consecutive = all(hand[i + 1].number.value == hand[i].number.value + 1 for i in range(4)) or \
-                   hand[4].number == Number.ACE and hand[0].number == Number.TWO and all(
-    hand[i + 1].number.value == hand[i].number.value + 1 for i in range(3))
+                  hand[4].number == Number.ACE and hand[0].number == Number.TWO and all(
+                  hand[i + 1].number.value == hand[i].number.value + 1 for i in range(3))
   is_same_suit = all(card.color == hand[0].color for card in hand)
   if is_consecutive and is_same_suit:
     return Combinations.STRAIGHTFLUSH
@@ -64,20 +64,20 @@ def classify_hand(hand):
   elif is_consecutive:
     return Combinations.STRAIGHT
   elif all(hand[i + 1].number.value == hand[i].number.value for i in range(3)) or all(
-      hand[i + 1].number.value == hand[i].number.value for i in range(1, 4)):
+    hand[i + 1].number.value == hand[i].number.value for i in range(1, 4)):
     return Combinations.FOUROFAKIND
   elif (hand[0].number == hand[1].number == hand[2].number and hand[3].number == hand[4].number) or (
-      hand[0].number == hand[1].number and hand[2].number == hand[3].number == hand[4].number):
+    hand[0].number == hand[1].number and hand[2].number == hand[3].number == hand[4].number):
     return Combinations.FULLHOUSE
   elif (hand[0].number == hand[1].number == hand[2].number) or (
-      hand[1].number == hand[2].number == hand[3].number) or (hand[2].number == hand[3].number == hand[4].number):
+    hand[1].number == hand[2].number == hand[3].number) or (hand[2].number == hand[3].number == hand[4].number):
     return Combinations.THREEOFAKIND
   elif (hand[0].number == hand[1].number and hand[2].number == hand[3].number) or (
-      hand[0].number == hand[1].number and hand[3].number == hand[4].number) or (
-      hand[1].number == hand[2].number and hand[3].number == hand[4].number):
+    hand[0].number == hand[1].number and hand[3].number == hand[4].number) or (
+    hand[1].number == hand[2].number and hand[3].number == hand[4].number):
     return Combinations.TWOPAIR
   elif hand[0].number == hand[1].number or hand[1].number == hand[2].number or hand[2].number == hand[3].number or \
-      hand[3].number == hand[4].number:
+    hand[3].number == hand[4].number:
     return Combinations.PAIR
   else:
     return Combinations.HIGHCARD
