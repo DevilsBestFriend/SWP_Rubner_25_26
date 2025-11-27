@@ -106,15 +106,15 @@ def main():
     results[combination.value] += 1
 
   name_relative = [
-    ["Highcards\t", "50,1177%", Combinations.HIGHCARD],
-    ["Pairs\t\t", "42,2569%", Combinations.PAIR],
-    ["Two Pairs\t", "4,7539%", Combinations.TWOPAIR],
+    ["Highcards\t\t", "50,1177%", Combinations.HIGHCARD],
+    ["Pairs\t\t\t", "42,2569%", Combinations.PAIR],
+    ["Two Pairs\t\t", "4,7539%", Combinations.TWOPAIR],
     ["Three of a Kinds", "2,1128%", Combinations.THREEOFAKIND],
-    ["Straights\t", "0,3925%", Combinations.STRAIGHT],
-    ["Flushs\t\t", "0,1965%", Combinations.FLUSH],
-    ["Full Houses\t", "0,1441%", Combinations.FULLHOUSE],
-    ["Pokers\t\t", "0,0240%", Combinations.FOUROFAKIND],
-    ["Straight Flushs\t", "0,001544%", Combinations.STRAIGHTFLUSH],
+    ["Straights\t\t", "0,3925%", Combinations.STRAIGHT],
+    ["Flushs\t\t\t", "0,1965%", Combinations.FLUSH],
+    ["Full Houses\t\t", "0,1441%", Combinations.FULLHOUSE],
+    ["Pokers\t\t\t", "0,0240%", Combinations.FOUROFAKIND],
+    ["Straight Flushs\t", "0,001544%", Combinations.STRAIGHTFLUSH]
   ]
   for nr in name_relative:
     print(
