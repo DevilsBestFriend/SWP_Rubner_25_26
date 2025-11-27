@@ -1,5 +1,5 @@
-from enum import Enum
 import random
+from enum import Enum
 
 
 class Color(Enum):
@@ -7,6 +7,7 @@ class Color(Enum):
   P = "Pik ♠"
   H = "Herz ♥"
   D = "Karo ♦"
+
 
 class Number(Enum):
   TWO = 2
@@ -23,6 +24,7 @@ class Number(Enum):
   KING = 13
   ACE = 14
 
+
 class Combinations(Enum):
   HIGHCARD = 0
   PAIR = 1
@@ -34,70 +36,75 @@ class Combinations(Enum):
   FOUROFAKIND = 7
   STRAIGHTFLUSH = 8
 
+
 class Card():
   def __init__(self, color: Color, number: Number):
     self.color = color
     self.number = number
 
   def __str__(self):
-    return str(self.number.value)+" "+str(self.color.value)
-    
+    return str(self.number.value) + " " + str(self.color.value)
+
+
 def dealhand(cards):
-  hand = [random.sample(cards,5)]
+  hand = [random.sample(cards, 5)]
   return hand
+
 
 def classify_hand(hand):
   hand = sorted(hand[0], key=lambda x: x.number.value)
   is_consecutive = all(hand[i + 1].number.value == hand[i].number.value + 1 for i in range(4)) or \
-    hand[4].number == Number.ACE and hand[0].number == Number.TWO and all(
+                   hand[4].number == Number.ACE and hand[0].number == Number.TWO and all(
     hand[i + 1].number.value == hand[i].number.value + 1 for i in range(3))
   is_same_suit = all(card.color == hand[0].color for card in hand)
   if is_consecutive and is_same_suit:
     return Combinations.STRAIGHTFLUSH
   elif is_same_suit:
-    return  Combinations.FLUSH
+    return Combinations.FLUSH
   elif is_consecutive:
     return Combinations.STRAIGHT
   elif all(hand[i + 1].number.value == hand[i].number.value for i in range(3)) or all(
-          hand[i + 1].number.value == hand[i].number.value for i in range(1, 4)):
+      hand[i + 1].number.value == hand[i].number.value for i in range(1, 4)):
     return Combinations.FOUROFAKIND
   elif (hand[0].number == hand[1].number == hand[2].number and hand[3].number == hand[4].number) or (
-          hand[0].number == hand[1].number and hand[2].number == hand[3].number == hand[4].number):
+      hand[0].number == hand[1].number and hand[2].number == hand[3].number == hand[4].number):
     return Combinations.FULLHOUSE
   elif (hand[0].number == hand[1].number == hand[2].number) or (
-          hand[1].number == hand[2].number == hand[3].number) or (hand[2].number == hand[3].number == hand[4].number):
+      hand[1].number == hand[2].number == hand[3].number) or (hand[2].number == hand[3].number == hand[4].number):
     return Combinations.THREEOFAKIND
   elif (hand[0].number == hand[1].number and hand[2].number == hand[3].number) or (
-          hand[0].number == hand[1].number and hand[3].number == hand[4].number) or (
-          hand[1].number == hand[2].number and hand[3].number == hand[4].number):
+      hand[0].number == hand[1].number and hand[3].number == hand[4].number) or (
+      hand[1].number == hand[2].number and hand[3].number == hand[4].number):
     return Combinations.TWOPAIR
   elif hand[0].number == hand[1].number or hand[1].number == hand[2].number or hand[2].number == hand[3].number or \
-          hand[3].number == hand[4].number:
+      hand[3].number == hand[4].number:
     return Combinations.PAIR
   else:
     return Combinations.HIGHCARD
 
-def generate_cards():
-    cards = []
-    for color in Color:  # Generate a list of all cards
-        for number in Number:
-            cards.append(Card(color, number))
-    return cards
 
-def main ():
+def generate_cards():
+  cards = []
+  for color in Color:  # Generate a list of all cards
+    for number in Number:
+      cards.append(Card(color, number))
+  return cards
+
+
+def main():
   cards = generate_cards()
 
   tests = input("How many tests to run? [Default: 10000]")
   try:
-    tests = 10000 if len(tests) == 0 else int(tests) # ternary operator
+    tests = 10000 if len(tests) == 0 else int(tests)  # ternary operator
   except ValueError:
-      print("Invalid input, using default value of 10000")
-      tests = 10000
+    print("Invalid input, using default value of 10000")
+    tests = 10000
   results = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   for _ in range(tests):
     combination = classify_hand(dealhand(cards))
     results[combination.value] += 1
-  
+
   name_relative = [
     ["Highcards\t", "50,1177%", Combinations.HIGHCARD],
     ["Pairs\t\t", "42,2569%", Combinations.PAIR],
@@ -110,7 +117,9 @@ def main ():
     ["Straight Flushs\t", "0,001544%", Combinations.STRAIGHTFLUSH],
   ]
   for nr in name_relative:
-    print(f"{nr[0]}|\tAbsolute amount:\t{results[nr[2].value]}\tRelative amount: {results[nr[2].value]/tests*100:.6f}%\tTrue relative amount:\t{nr[1]}")
+    print(
+      f"{nr[0]}|\tAbsolute amount:\t{results[nr[2].value]}\tRelative amount: {results[nr[2].value] / tests * 100:.6f}%\tTrue relative amount:\t{nr[1]}")
+
 
 if __name__ == "__main__":
   main()
