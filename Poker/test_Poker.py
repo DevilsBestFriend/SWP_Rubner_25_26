@@ -22,7 +22,7 @@ class testClassifyHand(unittest.TestCase):
     hand = [Card(Color.K, Number.TWO), Card(Color.P, Number.THREE), Card(Color.H, Number.FOUR), Card(Color.D, Number.FIVE), Card(Color.K, Number.SIX)]
     self.assertEqual(classify_hand(hand), Combinations.STRAIGHT)
     hand = [Card(Color.K, Number.ACE, ), Card(Color.P, Number.TWO), Card(Color.H, Number.THREE), Card(Color.D, Number.FOUR), Card(Color.K, Number.FIVE)]
-    self.assertEqual(classify_hand(hand), Combinations.STRAIGHT)
+    self.assertEqual(classify_hand(hand), Combinations.STRAIGHT, "Error with Ace low straight")
 
 if __name__ == '__main__':
   unittest.main()
