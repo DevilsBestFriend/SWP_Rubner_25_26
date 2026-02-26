@@ -1,14 +1,4 @@
 class Auto:
-    """Simple Auto class demonstrating magic methods.
-
-    - PS (horsepower) is stored as integer in `ps` attribute.
-    - len(a) returns the PS value.
-    - Addition, subtraction, multiplication between Auto objects
-      return integer results (summing/operating on PS).
-    - Operations with ints are supported where sensible.
-    - Type checking enforces appropriate operand types.
-    - Comparison operators compare PS values.
-    """
 
     def __init__(self, ps: int):
         if not isinstance(ps, int):
