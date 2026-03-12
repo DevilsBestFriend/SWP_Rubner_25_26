@@ -5,6 +5,9 @@ class Node:
 
     def __next__(self):
         return self.next
+    
+    def __str__(self):
+        return "Data: " + str(self.data) + "; "
 
 
 class LinkedList:
@@ -20,19 +23,22 @@ class LinkedList:
         self.current = self.current.next
         return self.current
 
-    def add(self, new):
+    def add(self, data):
+        next = self.first
         while next.next != None:
             next = next.next
-        next.next = new
+        next.next = Node(data=data)
 
     def __len__(self):
         pass
 
     def all(self):
-        all = [self.first.data]
+        all = list()
         next = self.first
-        while next.next != None:
+        while next != None:
             all.append(next.data)
+            next = next.next
+        return all
 
 
 def main():
@@ -43,4 +49,9 @@ if __name__ == "__main__":
     
     listn = LinkedList(1)
     
+    listn.add(2)
+    listn.add(3)
+    listn.add("test")
+    
+    print(listn.first)
     print(listn.all())
