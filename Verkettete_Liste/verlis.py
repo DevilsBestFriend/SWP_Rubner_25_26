@@ -23,14 +23,22 @@ class LinkedList:
         self.current = self.current.next
         return self.current
 
-    def add(self, data):
+    def apendieren(self, data):
         next = self.first
         while next.next != None:
             next = next.next
         next.next = Node(data=data)
+        
+    def insertieren():
+        pass
+    
+    def deletieren():
+        pass
 
     def __len__(self):
-        pass
+        count = 0
+        while next != None:
+            count += 1
 
     def all(self):
         all = list()
@@ -39,19 +47,36 @@ class LinkedList:
             all.append(next.data)
             next = next.next
         return all
+    
+    def last (self):
+        all = list()
+        next = self.first
+        while next.next != None:
+            next = next.next
+        return next.data
+    
 
 
 def main():
-    pass
-
-if __name__ == "__main__":
-    main()
-    
     listn = LinkedList(1)
     
-    listn.add(2)
-    listn.add(3)
-    listn.add("test")
+    listn.apendieren(2)
+    listn.apendieren(3)
+    listn.apendieren("test")
+    
+    x = 0
+    for l in listn:
+        print(l.data)
+        x += 1
+        if x >= 10:
+            pass
+        
     
     print(listn.first)
     print(listn.all())
+    print(listn.last())
+ 
+if __name__ == "__main__":
+    main()
+    
+    
