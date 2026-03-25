@@ -13,7 +13,7 @@ def main():
     print("")
     
     listn.insertieren(1, "insert")
-    listn.deletieren(3)
+    listn.deletieren(i = 3)
     
     print("last= ", listn.last())
     print("first= ", listn.first())
